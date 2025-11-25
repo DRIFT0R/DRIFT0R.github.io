@@ -1,0 +1,6 @@
+title: Stephano's Website
+theme: jekyll-theme-hacker
+kramdown:
+  parse_block_html: true
+highlighter: rouge 
+  
