@@ -5,8 +5,7 @@ title: Home
 
 # Welcome to My Website!
 
-In this website, you’ll find notes from my cybersecurity journey: CTF writeups,
-research, blog posts, and other experiments I’m willing to share.
+This website is a fragment of my ethical hacking and cybersecurity journey. You'll find projects, essays, CTF writeups, blogs and other cool things and thoughts I want to share. 
 
 ---
 
