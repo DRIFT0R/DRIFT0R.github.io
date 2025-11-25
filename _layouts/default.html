@@ -1,43 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
-  <meta name="description" content="{{ page.description | default: site.description }}" />
-  <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
-</head>
-<body>
-  <header class="site-header">
-    <div class="logo">
-      <span class="logo-mark">SP</span>
-      <span class="logo-text">{{ site.title }}</span>
+<html lang="{{ site.lang | escape | default: "en-US" }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {# Optional: replace or remove this with your own Google verification if you have one #}
+    <!-- <meta name="google-site-verification" content="YOUR_CODE_HERE" /> -->
+
+    <meta property="og:image"
+          content="{{ page.ogImageUrl | url_escape | default: "https://drift0r.github.io/assets/images/ogimage.png" }}" />
+
+    <link rel="stylesheet"
+          href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+
+    {% include head-custom.html %}
+    {% seo %}
+  </head>
+
+  <body>
+    <header>
+      <div class="container">
+        <a id="a-title" href="{{ '/' | relative_url }}">
+          <h1>{{ site.title | escape | default: site.github.repository_name }}</h1>
+        </a>
+
+        <p class="site_description">
+          {{ site.description | escape | default: site.github.project_tagline }}
+        </p>
+
+        {% if site.subtitle %}
+        <p class="site_subtitle">
+          {{ site.subtitle | escape }}
+        </p>
+        {% endif %}
+
+        <section id="downloads">
+          <a href="{{ '/' | relative_url }}" class="btn btn-github">Home</a>
+          <a href="{{ '/research/' | relative_url }}" class="btn btn-github">Research</a>
+          <a href="{{ '/writing/' | relative_url }}" class="btn btn-github">Writing</a>
+          <a href="{{ '/blog/' | relative_url }}" class="btn btn-github">Blog</a>
+          <a href="{{ '/projects/' | relative_url }}" class="btn btn-github">Projects</a>
+          <a href="{{ '/about/' | relative_url }}" class="btn btn-github">About</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        {{ content }}
+      </section>
     </div>
 
-    <button class="nav-toggle" aria-label="Toggle navigation">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+    <footer></footer>
 
-    <nav class="site-nav">
-      <a href="{{ '/#home' | https://drift0r.github.io/ }}" class="nav-link">Home</a>
-      <a href="{{ '/#research' | https://drift0r.github.io/research }}" class="nav-link">Research</a>
-      <a href="{{ '/#writing' | https://drift0r.github.io/writing }}" class="nav-link">Writing</a>
-      <a href="{{ '/blog/' | https://drift0r.github.io/blog }}" class="nav-link">Blog</a>
-      <a href="{{ '/#projects' | https://drift0r.github.io/projects }}" class="nav-link">Projects</a>
-      <a href="{{ '/#about' | https://drift0r.github.io/about }}" class="nav-link">About</a>
-    </nav>
-  </header>
+    <script>
+      // Add tiny header links like #, ##, ### to headings with IDs
+      (function() {
+        const LINK_CONTENT = {
+          "H1": "#",
+          "H2": "##",
+          "H3": "###",
+          "H4": "####",
+          "H5": "#####",
+          "H6": "######",
+        };
 
-  <main>
-    {{ content }}
-  </main>
+        document.addEventListener("DOMContentLoaded", function() {
+          const headings = document.querySelectorAll("h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]");
 
-  <footer class="site-footer">
-    <p>© <span id="year"></span> {{ site.title }}. All rights reserved.</p>
-  </footer>
+          for (const heading of headings) {
+            const span = document.createElement("span");
 
-  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
-</body>
+            // For the main page title <h1>, we usually don't link it
+            if (heading.tagName.toLowerCase() === "h1") {
+              span.textContent = LINK_CONTENT[heading.tagName];
+              span.className = "headerLink";
+            } else {
+              const link = document.createElement("a");
+              link.href = `#${heading.id}`;
+              link.className = "headerLink";
+              link.textContent = LINK_CONTENT[heading.tagName];
+              span.appendChild(link);
+            }
+
+            heading.insertAdjacentElement("afterbegin", span);
+          }
+        });
+      })();
+    </script>
+  </body>
 </html>
