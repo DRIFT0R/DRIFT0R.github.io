@@ -5,11 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    
-    <meta name="google-site-verification" content="D1j4q-cV9Gg1AeBwwfTfbsahPfNpzC22do1CEia1LRI" />  
+    <!-- Your verification + OpenGraph -->
+    <meta name="google-site-verification" content="D1j4q-cV9Gg1AeBwwfTfbsahPfNpzC22do1CEia1LRI" />
     <meta property="og:image"
           content="{{ page.ogImageUrl | url_escape | default: "https://drift0r.github.io/assets/images/ogimage.png" }}" />
 
+    <!-- Our custom dark/cyan CSS -->
     <link rel="stylesheet"
           href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
 
@@ -18,10 +19,12 @@
   </head>
 
   <body>
-    <header>
-      <div class="container">
-        <a id="a-title" href="{{ '/' | relative_url }}">
-          <h1>{{ site.title | escape | default: site.github.repository_name }}</h1>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a id="a-title" href="{{ '/' | relative_url }}" class="site-title-link">
+          <h1 class="site-title">
+            {{ site.title | escape | default: site.github.repository_name }}
+          </h1>
         </a>
 
         <p class="site_description">
@@ -34,26 +37,36 @@
         </p>
         {% endif %}
 
-        <section id="downloads">
-          <a href="{{ '/' | https://drift0r.github.io/ }}" class="btn btn-github">Home</a>
-          <a href="{{ '/research/' | https://drift0r.github.io/research }}" class="btn btn-github">Research</a>
-          <a href="{{ '/writing/' | https://drift0r.github.io/writing }}" class="btn btn-github">Writing</a>
-          <a href="{{ '/blog/' | https://drift0r.github.io/blog }}" class="btn btn-github">Blog</a>
-          <a href="{{ '/projects/' | https://drift0r.github.io/projects }}" class="btn btn-github">Projects</a>
-          <a href="{{ '/about/' | https://drift0r.github.io/about }}" class="btn btn-github">About</a>
+        <section id="downloads" class="site-nav">
+          <a href="{{ '/' | relative_url }}" class="btn btn-github">Home</a>
+          <a href="{{ '/research/' | relative_url }}" class="btn btn-github">Research</a>
+          <a href="{{ '/writing/' | relative_url }}" class="btn btn-github">Writing</a>
+          <a href="{{ '/blog/' | relative_url }}" class="btn btn-github">Blog</a>
+          <a href="{{ '/projects/' | relative_url }}" class="btn btn-github">Projects</a>
+          <a href="{{ '/about/' | relative_url }}" class="btn btn-github">About</a>
         </section>
       </div>
     </header>
 
-    <div class="container">
+    <div class="container main-container">
       <section id="main_content">
         {{ content }}
       </section>
     </div>
 
-    <footer></footer>
+    <footer class="site-footer">
+      <p>© <span id="year"></span> {{ site.title }}. All rights reserved.</p>
+    </footer>
 
     <script>
+      // Set footer year
+      (function () {
+        const yearSpan = document.getElementById("year");
+        if (yearSpan) {
+          yearSpan.textContent = new Date().getFullYear();
+        }
+      })();
+
       // Add tiny header links like #, ##, ### to headings with IDs
       (function() {
         const LINK_CONTENT = {
