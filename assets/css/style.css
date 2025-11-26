@@ -4,15 +4,20 @@
   --bg-panel-alt: #060919;
   --text: #f9fafb;
   --muted: #9ca3af;
-  --accent: #22d3ee;      /* cyan */
-  --accent-strong: #06b6d4;
-  --accent-soft: rgba(34, 211, 238, 0.14);
+
+  /* Mint green cyberpunk accent */
+  --accent: #00ff9f;
+  --accent-strong: #00d58a;
+  --accent-soft: rgba(0, 255, 159, 0.16);
+
   --border-subtle: #111827;
   --radius-lg: 1rem;
   --radius-pill: 999px;
   --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.7);
-  --font-sans: "Helvetica Neue", Helvetica, Arial, system-ui, -apple-system,
+
+  --font-body: "Helvetica Neue", Helvetica, Arial, system-ui, -apple-system,
     BlinkMacSystemFont, sans-serif;
+  --font-heading: "Share Tech Mono", "IBM Plex Mono", monospace;
 }
 
 *,
@@ -27,13 +32,13 @@ html {
 
 body {
   margin: 0;
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   background-color: var(--bg);
   color: var(--text);
   min-height: 100vh;
 }
 
-/* Core layout helpers */
+/* Layout helpers */
 
 .container {
   width: 100%;
@@ -49,7 +54,7 @@ body {
   top: 0;
   z-index: 40;
   background: rgba(0, 0, 0, 0.96);
-  border-bottom: 1px solid rgba(34, 211, 238, 0.25);
+  border-bottom: 1px solid rgba(0, 255, 159, 0.35);
   backdrop-filter: blur(16px);
 }
 
@@ -65,12 +70,34 @@ body {
   text-decoration: none;
 }
 
+/* Main title: cyberpunk font + blinking cursor */
 .site-title {
   margin: 0;
-  font-size: 1.7rem;
-  letter-spacing: 0.12em;
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--accent);
+  white-space: nowrap;
+}
+
+/* Blinking cursor after site title */
+.site-title::after {
+  content: "_";
+  display: inline-block;
+  margin-left: 0.25rem;
+  color: var(--accent);
+  animation: cursor-blink 1s steps(2, start) infinite;
+}
+
+/* Cursor animation */
+@keyframes cursor-blink {
+  0%, 49% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
 }
 
 .site_description {
@@ -104,7 +131,7 @@ body {
   padding: 0.5rem 1.1rem;
   border-radius: var(--radius-pill);
   border: 1px solid rgba(15, 23, 42, 0.9);
-  background-image: linear-gradient(135deg, #0f172a, #020617);
+  background-image: linear-gradient(135deg, #020617, #050814);
   color: var(--muted);
   text-decoration: none;
   font-size: 0.75rem;
@@ -120,7 +147,7 @@ body {
 .btn:hover {
   background-image: linear-gradient(135deg, var(--accent), var(--accent-strong));
   color: #020617;
-  box-shadow: 0 10px 25px rgba(6, 182, 212, 0.5);
+  box-shadow: 0 10px 26px rgba(0, 255, 159, 0.55);
   transform: translateY(-1px);
 }
 
@@ -131,7 +158,12 @@ body {
 }
 
 #main_content {
-  background: radial-gradient(circle at top left, var(--bg-panel) 0, var(--bg-panel-alt) 60%, #000 100%);
+  background: radial-gradient(
+    circle at top left,
+    var(--bg-panel) 0,
+    var(--bg-panel-alt) 55%,
+    #000 100%
+  );
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-subtle);
   box-shadow: var(--shadow-soft);
@@ -161,10 +193,11 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: var(--font-heading);
   color: var(--accent);
   margin-top: 1.8rem;
   margin-bottom: 0.6rem;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 h1 {
@@ -179,7 +212,7 @@ h3 {
   font-size: 1.1rem;
 }
 
-/* Section helpers (if you use .section in pages) */
+/* Sections */
 
 .section {
   padding-block: 1.8rem;
@@ -260,7 +293,7 @@ h3 {
   color: var(--accent-strong);
 }
 
-/* About-style layout */
+/* About layout */
 
 .about-layout {
   display: grid;
