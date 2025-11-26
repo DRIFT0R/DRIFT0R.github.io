@@ -75,7 +75,7 @@ body {
   margin: 0;
   font-family: var(--font-heading);
   font-size: 1.8rem;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   color: var(--accent);
   white-space: nowrap;
@@ -110,7 +110,7 @@ body {
   margin: 0;
   font-size: 0.85rem;
   font-style: italic;
-  color: var(--accent-strong);
+  color: #ffffff;
 }
 
 /* Nav / buttons row */
@@ -194,7 +194,7 @@ h4,
 h5,
 h6 {
   font-family: var(--font-heading);
-  color: var(--accent);
+  color: #ffffff;
   margin-top: 1.8rem;
   margin-bottom: 0.6rem;
   font-weight: 500;
