@@ -5,12 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Your verification + OpenGraph -->
+    <!-- Verification + OpenGraph -->
     <meta name="google-site-verification" content="D1j4q-cV9Gg1AeBwwfTfbsahPfNpzC22do1CEia1LRI" />
     <meta property="og:image"
           content="{{ page.ogImageUrl | url_escape | default: "https://drift0r.github.io/assets/images/ogimage.png" }}" />
 
-    <!-- Our custom dark/cyan CSS -->
+    <!-- Cyberpunk heading font -->
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap">
+    
+    <!-- Custom CSS -->
     <link rel="stylesheet"
           href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
 
