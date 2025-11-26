@@ -75,7 +75,7 @@ body {
   margin: 0;
   font-family: var(--font-heading);
   font-size: 1.8rem;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.009em;
   text-transform: uppercase;
   color: var(--accent);
   white-space: nowrap;
